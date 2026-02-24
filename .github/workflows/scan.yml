@@ -1,0 +1,56 @@
+name: Security Scan
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install and build
+        run: npm ci && npm run build
+
+      - name: Prune dev dependencies
+        run: npm prune --omit=dev
+
+      - name: Build bundle
+        run: npx -y @anthropic-ai/mcpb pack
+
+      - name: Run MTF scanner
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/workspace \
+            -w /workspace \
+            ghcr.io/nimblebraininc/mpak-scanner:latest \
+            scan *.mcpb --json | tail -n +2 > scan-results.json
+          cat scan-results.json
+
+      - name: Check for critical/high findings
+        run: |
+          python3 -c "
+          import json, sys
+          with open('scan-results.json') as f:
+              results = json.load(f)
+          findings = results.get('findings', [])
+          critical_high = [f for f in findings if f.get('severity') in ('CRITICAL', 'HIGH')]
+          if critical_high:
+              print(f'FAIL: {len(critical_high)} critical/high findings')
+              for f in critical_high:
+                  print(f'  [{f[\"severity\"]}] {f.get(\"control\", \"\")} - {f.get(\"message\", \"\")}')
+              sys.exit(1)
+          print(f'PASS: No critical/high findings ({len(findings)} total findings)')
+          "
