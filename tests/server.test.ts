@@ -22,7 +22,7 @@ import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 // import type { ApiClient } from "../src/utils/apiClient.js";
 
 // TODO: import your schemas
-// import { ExampleSchema } from "../src/schemas.js";
+// import { ExampleSchema } from "../src/utils/schemas.js";
 
 // TODO: import your handlers
 // import { exampleHandler } from "../src/handlers/exampleHandler.js";
@@ -42,7 +42,7 @@ const mocks = {
 function createTestServer(): McpServer {
   const server = new McpServer({ name: "test-server", version: "0.0.0" });
 
-  // TODO: register tools here, same pattern as src/index.ts but using mockClient.
+  // TODO: register tools here, same pattern as src/app.ts but using mockClient.
   // server.registerTool(
   //   "tool_name",
   //   { description: "...", inputSchema: ExampleSchema.shape },

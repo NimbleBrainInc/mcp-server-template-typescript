@@ -4,7 +4,7 @@ import { z } from "zod";
  * Schemas for runtime validation of input from Agent → MCP Server.
  * Each exported schema corresponds to one tool's inputSchema.
  *
- * TODO: add a Zod schema for every tool you register in index.ts. Example:
+ * TODO: add a Zod schema for every tool you register in app.ts. Example:
  *
  *   export const GetItemSchema = z.object({
  *     item_id: z.string().describe("The unique ID of the item"),

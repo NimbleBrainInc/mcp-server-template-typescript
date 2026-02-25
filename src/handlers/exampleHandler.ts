@@ -4,7 +4,7 @@
  * TODO:
  * 1. Rename this file and function to match your tool (e.g. getItem.ts / getItem)
  * 2. Replace ApiClient with your renamed client class
- * 3. Replace ExampleSchema with the matching schema from ../schemas.ts
+ * 3. Replace ExampleSchema with the matching schema from ../utils/schemas.ts
  * 4. Call the appropriate client method and format the response
  */
 
@@ -13,8 +13,8 @@ import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { ApiClient } from "../utils/apiClient.js";
 import { errorResponse } from "../utils/errorResponse.js";
 
-// TODO: replace with the real input schema from ../schemas.ts
-// import type { ExampleSchema } from "../schemas.js";
+// TODO: replace with the real input schema from ../utils/schemas.ts
+// import type { ExampleSchema } from "../utils/schemas.js";
 type ExampleSchema = z.ZodObject<Record<string, never>>;
 
 export async function exampleHandler(

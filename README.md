@@ -1,15 +1,27 @@
 # mcp-server-template-node-ts
 
-A production-ready template for building NimbleBrain MCP servers in TypeScript + Node.js.
+A production-ready template for building [NimbleBrain](https://nimblebrain.ai) MCP servers in TypeScript + Node.js.
+
+Use this template to wrap any third-party REST API as an MCP server that ships as an `.mcpb` bundle via [mpak](https://nimblebrain.ai).
 
 ## What's included
 
 - TypeScript project wired up with `@modelcontextprotocol/sdk`
 - Zod-validated tool inputs and API responses
+- Stdio entrypoint (`src/index.ts`) and HTTP entrypoint (`src/server.ts`) via Streamable HTTP
+- Dockerfile for running the HTTP server in Docker
 - Makefile with `build`, `test`, `lint`, `format`, `typecheck`, `bundle`, and version-sync targets
 - GitHub Actions: CI (lint + test + bundle smoke test), release bundler, MTF security scanner
 - Vitest test setup using `InMemoryTransport` for integration testing without a live server
 - Skill markdown template for authoring Claude Code companion skills
+
+## Requirements
+
+- Node.js 24+
+- npm
+- [`mpak`](https://nimblebrain.ai) (for local testing)
+- Docker (optional, for HTTP transport testing)
+- `jq` (used by the Makefile for version management)
 
 ## How to use this template
 
@@ -36,13 +48,13 @@ cd mcp-YOUR_SERVER_NAME
 
 In order:
 
-1. **`src/types.ts`** — add Zod schemas for each API response type
+1. **`src/utils/types.ts`** — Zod schemas for each API response type
 2. **`src/utils/apiClient.ts`** — rename the class and add methods for each endpoint
-3. **`src/schemas.ts`** — add Zod schemas for each tool's input
-4. **`src/formatters.ts`** — add formatters that strip noisy fields from API responses
-5. **`src/handlers/`** — add one file per tool, following the `exampleHandler.ts` pattern
-6. **`src/index.ts`** — register each tool with `server.registerTool()`
-7. **`src/config.ts`** — rename the env var
+3. **`src/utils/schemas.ts`** — Zod schemas for each tool's input
+4. **`src/utils/formatters.ts`** — formatters that strip noisy fields from API responses
+5. **`src/handlers/`** — one file per tool, following the `exampleHandler.ts` pattern
+6. **`src/app.ts`** — register each tool with `server.registerTool()`
+7. **`src/utils/config.ts`** — rename the env var
 8. **`src/constants.ts`** — set `SERVER_NAME`
 9. **`manifest.json`** + **`server.json`** — fill in all `TODO` fields
 10. **`tests/`** — add fixture data and write tests for each tool
@@ -68,32 +80,8 @@ Use MCP Inspector for a GUI:
 npx @modelcontextprotocol/inspector mpak run --local ./YOUR_SERVER_NAME.mcpb
 ```
 
-## File reference
+## Reference
 
-```
-src/
-├── index.ts          # Server entry point — registers all tools
-├── config.ts         # Loads API key from environment
-├── constants.ts      # SERVER_NAME + VERSION
-├── types.ts          # Zod schemas for API responses (API → Server validation)
-├── schemas.ts        # Zod schemas for tool inputs (Agent → Server validation)
-├── formatters.ts     # Strip noisy fields before returning to agent
-├── handlers/         # One file per tool
-└── utils/
-    ├── apiClient.ts      # HTTP client — rename + add endpoint methods
-    └── errorResponse.ts  # Error → MCP CallToolResult
+See [ARCHITECTURE.md](ARCHITECTURE.md) for a deep dive into how each part of the codebase works.
 
-tests/
-├── server.test.ts    # Integration tests via InMemoryTransport
-├── client.test.ts    # Unit tests for ApiError + client logic
-└── fixtures.ts       # Mock data matching types.ts shapes
-
-skills/
-└── example-skill/
-    └── SKILL.md      # Companion skill template
-
-manifest.json         # MCP bundle manifest (source of truth for metadata)
-server.json           # MCP registry schema
-mpak.json             # Package metadata
-Makefile              # Build automation (manifest.json is version source of truth)
-```
+For bundle creation, testing, and Docker workflows, see [CLAUDE.md](CLAUDE.md).
