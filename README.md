@@ -1,5 +1,9 @@
 # mcp-server-template-node-ts
 
+[![mpak](https://img.shields.io/badge/mpak-registry-blue)](https://mpak.dev/packages/@nimblebraininc?utm_source=github&utm_medium=readme&utm_campaign=mcp-server-template-node-ts)
+[![NimbleBrain](https://img.shields.io/badge/NimbleBrain-nimblebrain.ai-purple)](https://nimblebrain.ai?utm_source=github&utm_medium=readme&utm_campaign=mcp-server-template-node-ts)
+[![Discord](https://img.shields.io/badge/Discord-community-5865F2)](https://nimblebrain.ai/discord?utm_source=github&utm_medium=readme&utm_campaign=mcp-server-template-node-ts)
+
 A production-ready template for building [NimbleBrain](https://nimblebrain.ai) MCP servers in TypeScript + Node.js.
 
 Use this template to wrap any third-party REST API as an MCP server that ships as an `.mcpb` bundle via [mpak](https://nimblebrain.ai).
