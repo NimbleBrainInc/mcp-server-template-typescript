@@ -10,7 +10,7 @@
  */
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { VERSION, SERVER_NAME } from "./constants.js";
+import { SERVER_NAME, VERSION } from "./constants.js";
 import { ApiClient } from "./utils/apiClient.js";
 
 // TODO: import your real schemas from "./utils/schemas.js"

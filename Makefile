@@ -18,13 +18,13 @@ install: ## Install dependencies
 build: ## Build TypeScript
 	npm run build
 
-format: ## Format code with prettier
+format: ## Format code with biome
 	npm run format
 
 format-check: ## Check code formatting
 	npm run format:check
 
-lint: ## Lint code with eslint
+lint: ## Lint code with biome
 	npm run lint
 
 typecheck: ## Type check with tsc
@@ -39,7 +39,7 @@ clean: ## Clean build artifacts
 run: build ## Run the MCP server in stdio mode
 	node build/index.js --stdio
 
-check: format-check lint typecheck test ## Run all checks
+check: format-check typecheck test ## Run all checks
 
 all: clean install build check ## Clean, install, build, and check
 

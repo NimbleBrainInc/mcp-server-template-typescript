@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { loadConfig } from "./utils/config.js";
-import { VERSION, SERVER_NAME } from "./constants.js";
 import { createServer } from "./app.js";
+import { SERVER_NAME, VERSION } from "./constants.js";
+import { loadConfig } from "./utils/config.js";
 
 const config = loadConfig();
 const server = createServer(config.apiKey);

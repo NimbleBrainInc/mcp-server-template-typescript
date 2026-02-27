@@ -1,8 +1,7 @@
-import { describe, it, expect, vi, beforeAll, afterAll } from "vitest";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
+import { afterAll, beforeAll, describe, it } from "vitest";
 
 /**
  * Integration tests for the MCP server.

@@ -8,9 +8,9 @@
  * 4. Call the appropriate client method and format the response
  */
 
-import type { z } from "zod";
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
-import { ApiClient } from "../utils/apiClient.js";
+import type { z } from "zod";
+import type { ApiClient } from "../utils/apiClient.js";
 import { errorResponse } from "../utils/errorResponse.js";
 
 // TODO: replace with the real input schema from ../utils/schemas.ts
