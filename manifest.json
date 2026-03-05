@@ -1,0 +1,63 @@
+{
+  "manifest_version": "0.4",
+  "name": "@nimblebraininc/YOUR_SERVER_NAME",
+  "display_name": "YOUR_DISPLAY_NAME",
+  "version": "0.1.0",
+  "description": "TODO: one-line description of what this MCP server does",
+  "long_description": "TODO: multi-paragraph description for the marketplace listing.\n\n## Features\n\n- TODO: list key capabilities\n\n## Requirements\n\nTODO: describe how to obtain an API key.",
+  "author": {
+    "name": "NimbleBrain Inc",
+    "email": "hello@nimblebrain.ai"
+  },
+  "license": "MIT",
+  "keywords": ["TODO", "add", "relevant", "keywords"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NimbleBrainInc/YOUR_REPO_NAME"
+  },
+  "homepage": "https://nimblebrain.ai",
+  "documentation": "https://github.com/NimbleBrainInc/YOUR_REPO_NAME#readme",
+  "support": "https://github.com/NimbleBrainInc/YOUR_REPO_NAME/issues",
+  "privacy_policies": ["TODO: link to the third-party service's privacy policy"],
+  "compatibility": {
+    "platforms": ["darwin", "linux", "win32"],
+    "runtimes": {
+      "node": ">=24.0.0"
+    }
+  },
+  "user_config": {
+    "api_key": {
+      "type": "string",
+      "title": "YOUR_SERVICE API Key",
+      "description": "TODO: describe where the user can get this key",
+      "sensitive": true,
+      "required": true
+    }
+  },
+  "server": {
+    "type": "node",
+    "entry_point": "build/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/build/index.js", "--stdio"],
+      "env": {
+        "YOUR_API_KEY_ENV_VAR": "${user_config.api_key}"
+      }
+    }
+  },
+  "tools": [
+    { "name": "TODO_tool_name", "description": "TODO: describe what this tool does" }
+  ],
+  "_meta": {
+    "org.mpaktrust": {
+      "mtf_version": "0.1",
+      "permissions": {
+        "network": "outbound",
+        "filesystem": "none",
+        "subprocess": "none",
+        "environment": "read",
+        "native": "none"
+      }
+    }
+  }
+}

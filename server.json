@@ -1,0 +1,45 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.nimblebrain/YOUR_SERVER_NAME",
+  "title": "YOUR_DISPLAY_NAME",
+  "description": "TODO: one-line description of what this MCP server does",
+  "version": "0.1.0",
+  "websiteUrl": "https://nimblebrain.ai",
+  "repository": {
+    "url": "https://github.com/NimbleBrainInc/YOUR_REPO_NAME",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "@nimblebraininc/YOUR_SERVER_NAME",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "YOUR_API_KEY_ENV_VAR",
+          "description": "TODO: describe where the user can get this key",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "tool": "mcpb",
+      "version": "0.4"
+    },
+    "org.mpaktrust": {
+      "mtf_version": "0.1",
+      "permissions": {
+        "network": ["YOUR_API_HOST"],
+        "filesystem": "none",
+        "subprocess": "none"
+      }
+    }
+  }
+}
