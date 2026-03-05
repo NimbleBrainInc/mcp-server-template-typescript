@@ -1,12 +1,47 @@
+# Node
 node_modules/
 build/
 dist/
+*.tgz
+
+# Environment
 .env
 .env.*
 !.env.example
-*.mcpb
+
+# IDEs
 .vscode/
 .idea/
-*.tgz
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude
+.claude/
+
+# Testing
+coverage/
+.nyc_output/
+
+# MCPB bundles
+bundle/
+deps/
+*.mcpb
+
+# Scanner reports
+security-report.json
 .scan-results.json
-.claude/settings.local.json
+
+# Secrets
+*.key
+*.pem
+credentials.json
+.secrets/
+
+# Temp files
+tmp/
+temp/
+*.tmp
+*.swp
