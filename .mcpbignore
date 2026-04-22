@@ -1,24 +1,33 @@
-.git/
-.github/
-.vscode/
-.idea/
-.claude/
-tests/
-e2e/
-scripts/
-src/
+# mcpb pack loads this file and treats each pattern as gitignore-style.
+# Gitignore rule that bites: a pattern without a leading `/` matches
+# anywhere in the tree, including inside `node_modules/`. Unanchored
+# `tests/` or `src/` happily strips vendored package internals and
+# breaks imports at runtime. Anchor project-only patterns with `/`.
+
+# ── Strip anywhere (OS cruft — safe to remove from node_modules/) ──
+.DS_Store
 *.mcpb
-.env
-.env.*
-!.env.example
-Makefile
-tsconfig.json
-vitest.config.ts
-eslint.config.js
-pyproject.toml
-CLAUDE.md
-README.md
-tmp.ts
-*.png
-*.security-report.json
-!package-lock.json
+
+# ── Project-only (anchored) ──
+/.git/
+/.github/
+/.vscode/
+/.idea/
+/.claude/
+/.env
+/.env.*
+!/.env.example
+/tests/
+/e2e/
+/scripts/
+/src/
+/Makefile
+/tsconfig.json
+/vitest.config.ts
+/eslint.config.js
+/pyproject.toml
+/CLAUDE.md
+/README.md
+/tmp.ts
+/*.security-report.json
+!/package-lock.json
